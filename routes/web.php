@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/course/student/show/{course}',[CourseStudentController::class,'index'])->middleware('role:teacher')->name('course.course_students.index');
         Route::get('/course/student/create/{course}',[CourseStudentController::class,'create'])->middleware('role:teacher')->name('course.course_students.create');
-        Route::get('/course/student/save/{course}',[CourseStudentController::class,'store'])->middleware('role:teacher')->name('course.course_students.store');
+        Route::POST('/course/student/save/{course}',[CourseStudentController::class,'store'])->middleware('role:teacher')->name('course.course_students.store');
 
 
         // route student

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="{{ asset('css/output.css') }}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 </head>
@@ -90,12 +91,18 @@
                         </a>
                     </li>
                     <li>
-                        <a href="signin.html" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#2B82FE]">
+
+                    <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+
+                        <button type="submit" class="w-full p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#2B82FE]">
                             <div>
                                 <img src="{{ asset('images/icons/security-safe.svg') }}" alt="icon">
                             </div>
                             <p class="font-semibold transition-all duration-300 hover:text-white">Logout</p>
-                        </a>
+                        </button>
+                             </form>
                     </li>
                 </ul>
             </div>
@@ -178,7 +185,7 @@
                         <img src="{{ asset('images/icons/more.svg') }}" alt="icon">
                     </a>
                     <div class="dropdown-menu absolute hidden right-0 top-[66px] w-[270px] flex flex-col gap-4 p-5 border border-[#EEEEEE] bg-white rounded-[18px] transition-all duration-300 shadow-[0_10px_16px_0_#0A090B0D]">
-                        <a href="" class="flex gap-[10px] items-center">
+                        <a href="{{ route('dashboard.course.course_students.create',$course) }}" class="flex gap-[10px] items-center">
                             <div class="w-5 h-5">
                                 <img src="{{ asset('images/icons/profile-2user-outline.svg') }}" alt="icon">
                             </div>
@@ -230,7 +237,9 @@
                         </div>
                         <div class="flex items-center gap-[14px]">
                             <a href="{{ route('dashboard.course_questions.edit',$question) }}" class="bg-[#0A090B] p-[14px_30px] rounded-full text-white font-semibold">Edit</a>
-                            <form action="">
+                            <form method="POST" action="{{ route('dashboard.course_questions.destroy',$question) }}">
+                                @csrf
+                                @method('DELETE')
                                 <button class="w-[52px] h-[52px] flex shrink-0 items-center justify-center rounded-full bg-[#FD445E]">
                                     <img src="{{ asset('images/icons/trash.svg') }}" alt="icon">
                                 </button>
